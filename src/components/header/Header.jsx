@@ -1,16 +1,22 @@
-import "./header.scss";
 import {
+  faBed,
+  faCar,
   faHotel,
   faPlane,
-  faCar,
-  faBed,
   faTaxi,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-function Header() {
+import SearchBar from "../advancedSearchBar/SearchBar";
+import "./header.scss";
+
+function Header({ type }) {
   return (
     <div className="header">
-      <div className="headerContainer">
+      <div
+        className={
+          type === "list" ? "headerContainer listMode" : "headerContainer"
+        }
+      >
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faHotel} />
@@ -33,13 +39,20 @@ function Header() {
             <span>Airport Taxis</span>
           </div>
         </div>
-        <h1 className="headerTitle">A lifetime of discounts? It's Genius.</h1>
-        <p className="headerDescription">
-          Get rewarded for your travels - unlock exclusive discounts and perks
-          of 10% or more on hotels, flights, car rentals, and more with a Lavish
-          membership.
-        </p>
-        <button className="headerBtn">Sign in / Register</button>
+        {!type && (
+          <>
+            <h1 className="headerTitle">
+              A lifetime of discounts? It's Genius.
+            </h1>
+            <p className="headerDescription">
+              Get rewarded for your travels - unlodaeck exclusive discounts and
+              perks of 10% or more on hotels, flights, car rentals, and more
+              with a Lavish membership.
+            </p>
+            <button className="headerBtn">Sign in / Register</button>
+            <SearchBar />
+          </>
+        )}
       </div>
     </div>
   );
